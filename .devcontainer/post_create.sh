@@ -1,5 +1,5 @@
-echo "source /opt/ros/$ROS_DISTRO/setup.zsh" >> ~/.zshrc
-# echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
+# echo "source /opt/ros/$ROS_DISTRO/setup.zsh" >> ~/.zshrc
+echo "source ~/ros2_ws/install/setup.bash" >> ~/.bashrc
 
 # --- If using UV ---
 # source /opt/ros/$ROS_DISTRO/setup.bah
