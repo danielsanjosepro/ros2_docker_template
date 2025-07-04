@@ -2,7 +2,7 @@
     "name": "ROS 2 - Project",
     "privileged": true,
     "remoteUser": "ros",
-    "dockerComposeFile": "../docker-compose.yaml",
+    "dockerComposeFile": "./docker-compose.yaml",
     "workspaceFolder": "/home/ros/ros2_ws/src/ros2_docker_template",
     "service": "ros2_docker_template",
     "features": {

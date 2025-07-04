@@ -1,6 +1,6 @@
 ARG ROS_DISTRO=humble
  
-FROM osrf/ros:${ROS_DISTRO}-desktop
+FROM osrf/ros:${ROS_DISTRO}-desktop AS base
 
 ENV ROS_DISTRO=${ROS_DISTRO}
 
@@ -65,7 +65,15 @@ RUN mkdir -p /home/ros/ros2_ws/src
 
 WORKDIR /home/ros/ros2_ws/src
 
-# RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.2.1/zsh-in-docker.sh)"
-# RUN git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+FROM osrf/ros:${ROS_DISTRO}-desktop AS overlay
 
-SHELL ["/bin/bash", "-c"]
+COPY --chown=ros:ros . /home/ros/ros2_ws/src
+
+WORKDIR /home/ros/ros2_ws
+
+RUN bash /opt/ros/${ROS_DISTRO}/setup.bash && \
+    colcon build --symlink-install
+
+# RUN source /opt/ros/${ROS_DISTRO}/setup.bash && \
+#     rosdep install -y --from-paths src --ignore-src --rosdistro ${ROS_DISTRO} && \
+#     colcon build --symlink-install
