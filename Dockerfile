@@ -65,7 +65,7 @@ RUN mkdir -p /home/ros/ros2_ws/src
 
 WORKDIR /home/ros/ros2_ws/src
 
-FROM osrf/ros:${ROS_DISTRO}-desktop AS overlay
+FROM base AS overlay
 
 COPY --chown=ros:ros . /home/ros/ros2_ws/src
 
